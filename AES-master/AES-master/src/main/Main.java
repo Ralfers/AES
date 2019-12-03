@@ -1,11 +1,10 @@
 
-package Main;
+package main;
 
 import aes.AES;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import static sun.security.krb5.Confounder.bytes;
 
 /**
  *
@@ -23,6 +22,14 @@ public class Main {
         aes.encrypt(plaintext);
     }
 
+    public static String bytesToHex(byte[] in) {
+        final StringBuilder builder = new StringBuilder();
+        for(byte b : in) {
+            builder.append(String.format("%02x", b));
+        }
+        return builder.toString();
+    }
+
     public static void loadArgs(String[] args) throws Exception {
         if (args.length < 2) {
             System.out.println("Usage: java -jar AES.jar keyFilePath plaintextFilePath");
@@ -34,7 +41,7 @@ public class Main {
         key =  Files.readAllBytes(keyFilePath);
         plaintext = Files.readAllBytes(plaintextFilePath);
 
-        System.out.println("key: " + javax.xml.bind.DatatypeConverter.printHexBinary(key));
-        System.out.println("plaintext: " + javax.xml.bind.DatatypeConverter.printHexBinary(plaintext));
+        System.out.println("key: " + bytesToHex(key));
+        System.out.println("plaintext: " + bytesToHex(plaintext));
     }
 }

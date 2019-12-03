@@ -35,29 +35,29 @@ public class ExpandedKey {
             w[i] |= key[i * 4 + 2] << 8;
             w[i] |= key[i * 4 + 3];
 
-            System.out.println("w" + i + ": " + hexString(w[i]));
+            //System.out.println("w" + i + ": " + hexString(w[i]));
         }
         //w4-w43
         for (int i = 1; i <= Nr; i++) {
             for (int j = 0; j < Nk; j++) {
                 int number = i * Nk + j;
                 int temp = w[number - 1];
-                System.out.print("w" + number + ": temp = " + hexString(temp));
+                //System.out.print("w" + number + ": temp = " + hexString(temp));
 
                 if (j == 0) {
                     temp = Integer.rotateLeft(temp, 8);
-                    System.out.print(", RotWord() = " + hexString(temp));
+                  //  System.out.print(", RotWord() = " + hexString(temp));
                     temp = SBox.subWord(temp);
-                    System.out.print(", SubWord() = " + hexString(temp));
-                    System.out.print(", Rcon[" + number + "/4]: " + hexString(roundConsts[number / Nk - 1]));
+                    //System.out.print(", SubWord() = " + hexString(temp));
+                    //System.out.print(", Rcon[" + number + "/4]: " + hexString(roundConsts[number / Nk - 1]));
                     temp ^= roundConsts[number / Nk - 1];
-                    System.out.print(", After XOR with Rcon: " + hexString(temp));
+                    //System.out.print(", After XOR with Rcon: " + hexString(temp));
                 }
 
                 int prevRoundW = w[number - Nk];
-                System.out.print(", w[" + number + "-4]: " + hexString(prevRoundW));
+                //System.out.print(", w[" + number + "-4]: " + hexString(prevRoundW));
                 w[number] = temp ^ prevRoundW;
-                System.out.println(", w" + number + ": " + hexString(w[number]));
+                //System.out.println(", w" + number + ": " + hexString(w[number]));
             }
         }
     }

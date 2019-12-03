@@ -25,22 +25,51 @@ public class AES {
     }
     
     public byte[] encrypt(byte[] plaintext) {
+
         for (int i = 0; i < Nk; i++) {
             for (int j = 0; j < 4; j++) {
-                state[i][j] = plaintext[4 * i + j] & 0xFF;
+                state[i][j] = plaintext[4 * j + i] & 0xFF;
             }
         }
         
         //Lets go
-        addRoundKey(0);
+        addRoundKey(0); // janomaina sis
+
+        for (int i = 0; i < Nk; i++) {
+            for (int j = 0; j < 4; j++) {
+                //state[i][j] = SBox.subWord(state[i][j]) & 0xFF ;
+            }
+        }
+
+        //shiftRows();
         printState();
 
         for (int i = 1; i <= Nr; i++) {
-            
+
         }
         
         
         return null;
+    }
+
+    private void mixColumn(){
+
+
+        return;
+    }
+
+    private void shiftRows() {
+
+        int[][] tmp = new int[4][Nb];
+
+        for (int j = 0; j < Nk; j++) {
+            for (int i = 0; i < 4; i++) {
+                tmp[i][j] = state[(i + j) % 4][j];
+            }
+        }
+        state = tmp;
+
+        return;
     }
     
     private void addRoundKey(int round) {
@@ -51,7 +80,10 @@ public class AES {
             } 
         }
     }
-    
+
+
+    // substitude bytes -sbox vietaa, nakamo tepat, mixcolumns ari te
+
     private void printState() {
         System.out.println("*******************************************");
         for (int i = 0; i < Nk; i++) {

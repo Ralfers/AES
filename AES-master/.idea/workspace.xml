@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1971fa0a-b8e3-43cf-a47c-636d89f50a4d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/AES-master.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AES-master/src/aes/AES.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AES-master/src/aes/ExpandedKey.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AES-master/src/aes/SBox.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AES-master/src/key" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AES-master/src/main/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AES-master/src/plaintext" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AES-master/target/production/AES-master/aes/AES.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AES-master/target/production/AES-master/aes/ExpandedKey.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AES-master/target/production/AES-master/aes/SBox.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AES-master/target/production/AES-master/key" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AES-master/target/production/AES-master/main/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AES-master/target/production/AES-master/plaintext" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1ToC4Dl5yl9w9IkesVm0xESX0qQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <module name="AES-master" />
+      <option name="PROGRAM_PARAMETERS" value="src/key src/plaintext" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/AES-master" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <module name="AES-master" />
+      <option name="PROGRAM_PARAMETERS" value="src/key src/plaintext" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Unnamed" />
+      <item itemvalue="Application.Main" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1971fa0a-b8e3-43cf-a47c-636d89f50a4d" name="Default Changelist" comment="" />
+      <created>1574116868497</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1574116868497</updated>
+      <workItem from="1574116873714" duration="712000" />
+      <workItem from="1574513146789" duration="5402000" />
+      <workItem from="1575221311086" duration="14932000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
