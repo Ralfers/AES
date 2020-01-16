@@ -35,24 +35,23 @@ public class AES {
 
         //Lets go
         addRoundKey(0);
-        printState();
-        subBytes();
-        printState();
-        shiftRows();
-        printState();
-        mixColumns();
-        printState();
 
-        /*for (int i = 0; i < Nr; i++) {
+        for (int i = 1; i <= Nr; i++) {
             subBytes();
-        }*/
+            shiftRows();
+            if (i != Nr) {
+                mixColumns();
+            }
+            addRoundKey(i);
+        }
+        printState();
         
         return null;
     }
 
     private void addRoundKey(int round) {
-        for (int i = round * Nk; i < round * Nk + Nk; i++) {
-            int w = expandedKey.getKey(i);
+        for (int i = 0; i < Nk; i++) {
+            int w = expandedKey.getKey(i + round * Nk);
             for (int j = 0; j < 4; j++) {
                 state[i][j] ^= (w >> 8 * (3 - j)) & 255; // Move the key byte to the first octet, AND it with 8 1's
             }
