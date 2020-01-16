@@ -1,6 +1,7 @@
 
 package aes;
 
+import static aes.AES.Nb;
 import static aes.AES.Nk;
 import static aes.AES.Nr;
 
@@ -35,30 +36,27 @@ public class ExpandedKey {
             w[i] |= key[i * 4 + 2] << 8;
             w[i] |= key[i * 4 + 3];
 
-            //System.out.println("w" + i + ": " + hexString(w[i]));
+            System.out.println("w" + i + ": " + hexString(w[i]));
         }
         //w4-w43
-        for (int i = 1; i <= Nr; i++) {
-            for (int j = 0; j < Nk; j++) {
-                int number = i * Nk + j;
-                int temp = w[number - 1];
-                //System.out.print("w" + number + ": temp = " + hexString(temp));
+        for (int i = Nk; i < Nb * (Nr + 1); i++) {
+            int temp = w[i - 1];
+            System.out.print("w" + i + ": temp = " + hexString(temp));
 
-                if (j == 0) {
-                    temp = Integer.rotateLeft(temp, 8);
-                  //  System.out.print(", RotWord() = " + hexString(temp));
-                    temp = SBox.subWord(temp);
-                    //System.out.print(", SubWord() = " + hexString(temp));
-                    //System.out.print(", Rcon[" + number + "/4]: " + hexString(roundConsts[number / Nk - 1]));
-                    temp ^= roundConsts[number / Nk - 1];
-                    //System.out.print(", After XOR with Rcon: " + hexString(temp));
-                }
-
-                int prevRoundW = w[number - Nk];
-                //System.out.print(", w[" + number + "-4]: " + hexString(prevRoundW));
-                w[number] = temp ^ prevRoundW;
-                //System.out.println(", w" + number + ": " + hexString(w[number]));
+            if (i % Nk == 0) {
+                temp = Integer.rotateLeft(temp, 8);
+                System.out.print(", RotWord() = " + hexString(temp));
+                temp = SBox.subWord(temp);
+                System.out.print(", SubWord() = " + hexString(temp));
+                System.out.print(", Rcon[" + i + "/4]: " + hexString(roundConsts[i / Nk - 1]));
+                temp ^= roundConsts[i / Nk - 1];
+                System.out.print(", After XOR with Rcon: " + hexString(temp));
             }
+
+            int prevRoundW = w[i - Nk];
+            System.out.print(", w[" + i + "-4]: " + hexString(prevRoundW));
+            w[i] = temp ^ prevRoundW;
+            System.out.println(", w" + i + ": " + hexString(w[i]));
         }
     }
 

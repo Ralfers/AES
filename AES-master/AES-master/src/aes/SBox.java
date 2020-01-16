@@ -48,16 +48,17 @@ public class SBox {
     static int subWord(int word) {
         int subbedWord = 0x00000000;
         for (int i = 3; i >= 0; i--) {
-            int sub = getSubForByte(word, i);
+            int targetByte = (word >> (8 * i)) & 255;
+            int sub = subByte(targetByte);
             subbedWord |= sub << (8 * i);
         }
 
         return subbedWord;
     }
 
-    private static int getSubForByte(int word, int bytePos) {
-        int x = word >> (8 * bytePos + 4) & 15;
-        int y = (word >> (8 * bytePos)) & 15;
+    static int subByte(int targetByte) {
+        int x = (targetByte >> 4) & 15;
+        int y = targetByte & 15;
 
         return SBOX[x][y];
     }
