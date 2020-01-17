@@ -16,8 +16,9 @@ import java.nio.file.Paths;
  */
 public class Main {
 
-    private static byte[] key;
-    private static byte[] text;
+    private static byte[] key = null;
+    private static byte[] text = null;
+    private static byte[] iv = null;
     private static char mode;
 
     public static void main(String[] args) throws Exception {
@@ -26,7 +27,7 @@ public class Main {
         byte[] result;
 
         if (mode == 'e') {
-            result = aes.encrypt(text);
+            result = aes.encrypt(text, iv);
             try (FileOutputStream fos = new FileOutputStream(args[2] + ".enc")) {
                 fos.write(result);
             }
@@ -51,9 +52,13 @@ public class Main {
 
         Path keyFilePath = Paths.get(args[1]);
         Path plaintextFilePath = Paths.get(args[2]);
-
         key =  Files.readAllBytes(keyFilePath);
         text = Files.readAllBytes(plaintextFilePath);
+
+        if (args.length > 3) {
+            Path ivFilePath = Paths.get(args[3]);
+            iv = Files.readAllBytes(ivFilePath);
+        }
 
         System.out.println("key: " + bytesToHex(key));
         System.out.println("plaintext: " + bytesToHex(text));

@@ -16,8 +16,8 @@ public class ExpandedKey {
         0x20000000, 0x40000000, 0x80000000, 0x1b000000, 0x36000000
     };
 
-    private int w[] = new int[44];
-    private int key[] = new int[16];
+    private int w[] = new int[Nb * (Nr + 1)];
+    private int key[] = new int[Nk * 4];
 
     public ExpandedKey(byte[] key) {
         for (int i = 0; i < key.length; i++) {
@@ -28,7 +28,6 @@ public class ExpandedKey {
     }
 
     private void expandKey() {
-        //w0-w3
         for (int i = 0; i < Nk; i++) {
             w[i] = 0x00000000;
             w[i] |= key[i * 4] << 24;
@@ -38,7 +37,7 @@ public class ExpandedKey {
 
             System.out.println("w" + i + ": " + hexString(w[i]));
         }
-        //w4-w43
+
         for (int i = Nk; i < Nb * (Nr + 1); i++) {
             int temp = w[i - 1];
             System.out.print("w" + i + ": temp = " + hexString(temp));
@@ -51,6 +50,9 @@ public class ExpandedKey {
                 System.out.print(", Rcon[" + i + "/4]: " + hexString(roundConsts[i / Nk - 1]));
                 temp ^= roundConsts[i / Nk - 1];
                 System.out.print(", After XOR with Rcon: " + hexString(temp));
+            } else if (Nk == 8 && i % Nk == 4) {
+                temp = SBox.subWord(temp);
+                System.out.print(", SubWord() = " + hexString(temp));
             }
 
             int prevRoundW = w[i - Nk];
