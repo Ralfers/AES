@@ -121,7 +121,6 @@ public class AES {
                 state[i][j] = plaintext[4 * i + j] & 0xFF;
             }
         }
-        printState();
 
         //Lets go
         addRoundKey(0);
@@ -152,7 +151,6 @@ public class AES {
                 state[i][j] = cyphertext[4 * i + j] & 0xFF;
             }
         }
-        printState();
 
         //Lets go
         addRoundKey(Nr);
