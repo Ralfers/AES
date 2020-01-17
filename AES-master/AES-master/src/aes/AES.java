@@ -92,7 +92,7 @@ public class AES {
             byte[] iv = Arrays.copyOfRange(cyphertext, 0, IV_SIZE);
 
             byte[] previousBlock = null;
-            for (int i = 0; i < cyphertext.length; i += 16) {
+            for (int i = 16; i < cyphertext.length; i += 16) {
                 byte[] part = Arrays.copyOfRange(cyphertext, i, i + 16);
                 byte[] tmp = decryptBlock(part);
                 if (previousBlock == null) {
