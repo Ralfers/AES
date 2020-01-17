@@ -46,7 +46,45 @@ public class AES {
         }
         printState();
         
-        return null;
+        byte[] output = new byte[Nb * 4];
+        for (int i = 0; i < Nb; i++) {
+            for (int j = 0; j < 4; j++) {
+                output[i * Nb + j] = (byte) state[i][j];
+            }
+        }
+
+        return output;
+    }
+
+    public byte[] decrypt(byte[] cyphertext) {
+        for (int i = 0; i < Nb; i++) {
+            for (int j = 0; j < 4; j++) {
+                state[i][j] = cyphertext[4 * i + j] & 0xFF;
+            }
+        }
+        printState();
+
+        //Lets go
+        addRoundKey(Nr);
+
+        for (int i = Nr; i >= 1; i--) {
+            invShiftRows();
+            invSubBytes();
+            addRoundKey(i - 1);
+            if (i != 1) {
+                invMixColumns();
+            }
+        }
+        printState();
+
+        byte[] output = new byte[Nb * 4];
+        for (int i = 0; i < Nb; i++) {
+            for (int j = 0; j < 4; j++) {
+                output[i * Nb + j] = (byte) state[i][j];
+            }
+        }
+
+        return output;
     }
 
     private void addRoundKey(int round) {
@@ -66,6 +104,14 @@ public class AES {
         }
     }
 
+    private void invSubBytes() {
+        for (int i = 0; i < Nb; i++) {
+            for (int j = 0; j < 4; j++) {
+                state[i][j] = SBox.invSubByte(state[i][j]);
+            }
+        }
+    }
+
     private void shiftRows() {
         int[][] tmp = new int[Nb][4];
         for (int i = 0; i < 4; i++) {
@@ -73,9 +119,19 @@ public class AES {
                 tmp[j][i] = state[(i + j) % 4][i];
             }
         }
-        state = tmp;
 
-        return;
+        state = tmp;
+    }
+
+    private void invShiftRows() {
+        int[][] tmp = new int[Nb][4];
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < Nb; j++) {
+                tmp[j][i] = state[(4 - (i - j)) % 4][i];
+            }
+        }
+
+        state = tmp;
     }
 
     private void mixColumns() {
@@ -85,6 +141,16 @@ public class AES {
             state[i][1] = tmpCol[0] ^ multiplyBytes(0x02, tmpCol[1]) ^ multiplyBytes(0x03, tmpCol[2]) ^ tmpCol[3];
             state[i][2] = tmpCol[0] ^ tmpCol[1] ^ multiplyBytes(0x02, tmpCol[2]) ^ multiplyBytes(0x03, tmpCol[3]);
             state[i][3] = multiplyBytes(0x03, tmpCol[0]) ^ tmpCol[1] ^ tmpCol[2] ^ multiplyBytes(0x02, tmpCol[3]);
+        }
+    }
+
+    private void invMixColumns() {
+        for (int i = 0; i < Nb; i++) {
+            int[] tmpCol = state[i].clone();
+            state[i][0] = multiplyBytes(0x0e, tmpCol[0]) ^ multiplyBytes(0x0b, tmpCol[1]) ^ multiplyBytes(0x0d, tmpCol[2]) ^ multiplyBytes(0x09, tmpCol[3]);
+            state[i][1] = multiplyBytes(0x09, tmpCol[0]) ^ multiplyBytes(0x0e, tmpCol[1]) ^ multiplyBytes(0x0b, tmpCol[2]) ^ multiplyBytes(0x0d, tmpCol[3]);
+            state[i][2] = multiplyBytes(0x0d, tmpCol[0]) ^ multiplyBytes(0x09, tmpCol[1]) ^ multiplyBytes(0x0e, tmpCol[2]) ^ multiplyBytes(0x0b, tmpCol[3]);
+            state[i][3] = multiplyBytes(0x0b, tmpCol[0]) ^ multiplyBytes(0x0d, tmpCol[1]) ^ multiplyBytes(0x09, tmpCol[2]) ^ multiplyBytes(0x0e, tmpCol[3]);
         }
     }
 

@@ -62,4 +62,11 @@ public class SBox {
 
         return SBOX[x][y];
     }
+
+    static int invSubByte(int targetByte) {
+        int x = (targetByte >> 4) & 15;
+        int y = targetByte & 15;
+
+        return INV_SBOX[x][y];
+    }
 }
